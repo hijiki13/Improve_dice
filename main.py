@@ -1,9 +1,18 @@
 from random import randint
+
+def str_center(width=None, *strings):
+    if width is None:
+        width = 50
+    print()
+    for i in strings:
+        print(i.center(width))
+    print()
+
 # Кубик
 def bet_play():
-    roll = "Let's play!\U0001F3B2 \nYou have 500 points!"
     score = 500
-    print(roll)
+    str_center(60, "Let's play!\U0001F3B2", 'You have 500 points!')
+    
     while score > 0:
         bet_p = input('Your bet is (points): ')
         bet_n = input('You bet on (number): ')
@@ -12,29 +21,28 @@ def bet_play():
             bet_p, bet_n = int(bet_p), int(bet_n)
             
             if bet_p > score:
-                print("Can't bet more points then you have.")
+                str_center(60, "Can't bet more points then you have.")
                 continue
             elif bet_n not in range(1, 7):
-                print('Invalid bet (not in range 1-6)')
+                str_center(60, 'Invalid bet (not in range 1-6)')
                 continue       
             
             num = randint(1,6)
             if num == bet_n:
                 score += 3*bet_p
-                print(f'You got {num}! You win!\nScore: {score}')
+                str_center(60, f'You got {num}! You win!', f'~~~~~~~SCORE~~~~~~~', f'{score}')
             else:
                 score -= bet_p
-                print(f'You got {num}! Try again!\nScore: {score}')
+                str_center(60, f'You got {num}! Try again!', '~~~~~~~SCORE~~~~~~~', f'{score}')
 
-            roll = input('Go again? (Enter - continue; Q - exit)\n')        
+            roll = input('Go again? (Enter - continue; Q - exit)')        
             if roll:
-                print('Goodbye!')
+                str_center(60, 'Goodbye!')
                 break
             
         else:
-            print('Can be only numbers!')
-    else:
-        print('Sorry, you have no more points!')
+            str_center(60, 'Can be only numbers!')
+    str_center(60, 'Sorry, you have no more points!')
 
 dice = {
     1: (
