@@ -120,11 +120,13 @@ def bet_play(logs):
                 log_entry = Log('Error', 'Invalid input')
                 logs.write(str(log_entry))
     except KeyboardInterrupt:
+        print('\nYou pressed ctrl+c. Program will now end.')
         log_entry = Log('Error', 'KeyboardInterrupt')
         logs.write(str(log_entry))
         log_entry = Log('Event', 'Program ends (Error)')
         logs.write(str(log_entry))
     except Exception as err:
+        print('\nUnknown error. Check logs for more information.')
         log_entry = Log('Error', f'{type(err).__name__}')
         logs.write(str(log_entry))
         log_entry = Log('Event', 'Program ends (Error)')
@@ -138,10 +140,24 @@ def logs():
         log.write('\n')
 
 def read_logs():
-    pass
+    with open('logs.txt', 'r') as log:
+        log_data = log.read().split('\n\n')
+        log_data.pop()
+        total_num = log_data[-1].count('- Info -')
+        total = f"Dice rolled {total_num} times"
+        won_num = log_data[-1].count('WIN')
+        won = f"Won {won_num} times"
+        if total_num > 0:
+            percent = f'Winning percentage: {(won_num/total_num*100):.2f}%'
+            str_center(total, won, percent)
+        else:
+            str_center("You didn't play")
         
 def main():
     logs()
+    str_center('Show logs? (Enter)')
+    if not input():
+        read_logs()
 
 if __name__ == '__main__':
     main()
