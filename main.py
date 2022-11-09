@@ -17,7 +17,9 @@ def str_center(*strings):
         print(i.center(55))
     print()
 # главная функция
-def bet_play(logs):
+def bet_play():
+    # начальная запись в логи (программа запущенна)
+    logs('Event', 'Program starts')
     # словарь для отображения псевдографики
     dice = {
         1: (
@@ -79,15 +81,11 @@ def bet_play(logs):
                 # проверка вводимых данных
                 if bet_n not in range(1, 7):
                     str_center('Недействительное число. Должно быть в промежутке 1-6.')
-
-                    log_entry = Log('Error', 'Invalid bet number') 
-                    logs.write(str(log_entry)) #запись в логи
+                    logs('Error', 'Invalid bet number') #запись в логи
                     continue 
                 elif bet_p > score:
                     str_center("Нельзя поставить больше очков, чем у Вас есть.")
-
-                    log_entry = Log('Error', 'Invalid bet size')
-                    logs.write(str(log_entry))
+                    logs('Error', 'Invalid bet size')
                     continue    
             
                 # бросается кубик, показывается результат
@@ -97,52 +95,39 @@ def bet_play(logs):
                 if num == bet_n:
                     score += 3*bet_p
                     str_center(f'Выпало {num}! Вы выиграли!', f'~~~~~~~СЧЕТ~~~~~~~', f'{score}')
-                    log_entry = Log('Info', f'WIN with bet on {bet_n} - Number: {num}')
-                    logs.write(str(log_entry))
+                    logs('Info', f'WIN with bet on {bet_n} - Number: {num}')
                 else:
                     score -= bet_p
                     str_center(f'Выпало {num}! Попробуйте еще раз!', '~~~~~~~СЧЕТ~~~~~~~', f'{score}')
-                    log_entry = Log('Info', f'LOST with bet on {bet_n} - Number: {num}')
-                    logs.write(str(log_entry))
+                    logs('Info', f'LOST with bet on {bet_n} - Number: {num}')
                 if score < 1:
                     str_center('У Вас закончились очки!')
-                    log_entry = Log('Event', 'Program ended (no points)')
-                    logs.write(str(log_entry))
+                    logs('Event', 'Program ended (no points)')
                     return
                 # Пользователю дается шанс выйти из программы
                 str_center('Пропробовать еще раз?', '(Enter - продолжить; Q - выход)')
                 roll = input()        
                 if roll:
                     str_center('~~~~~~ДО СВИДАНИЯ!~~~~~~')
-
-                    log_entry = Log("Event", "Program ended (User's choice)")
-                    logs.write(str(log_entry))
+                    logs("Event", "Program ended (User's choice)\n")
                     return   
             else:
                 str_center('Можно вводить только числа.')
-
-                log_entry = Log('Error', 'Invalid input')
-                logs.write(str(log_entry))
-    # обработка изключений (с записью в логи)
+                logs('Error', 'Invalid input')
+    # обработка иcключений (с записью в логи)
     except KeyboardInterrupt:
         print('\nВы нажали ctrl+c. Выход из программы.')
-        log_entry = Log('Error', 'KeyboardInterrupt')
-        logs.write(str(log_entry))
-        log_entry = Log('Event', 'Program ends (Error)')
-        logs.write(str(log_entry))
+        logs('Error', 'KeyboardInterrupt')
+        logs('Event', 'Program ends (Error)\n')
     except Exception as err:
         print('\nНеизвестная ошибка. Больше информации можно узнать в логах.')
-        log_entry = Log('Error', f'{type(err).__name__}')
-        logs.write(str(log_entry))
-        log_entry = Log('Event', 'Program ends (Error)')
-        logs.write(str(log_entry))
+        logs('Error', f'{type(err).__name__}')
+        logs('Event', 'Program ends (Error)\n')
 # функция для записывания логов
-def logs():
+def logs(msg_type: str, msg: str):
     with open('logs.txt', 'a') as log:
-        log_entry = Log('Event', 'Program starts')
+        log_entry = Log(msg_type, msg)
         log.write(str(log_entry))
-        bet_play(log)
-        log.write('\n')
 # функция для вывода информавции из логов (процент выигрыша)
 def read_logs():
     with open('logs.txt', 'r') as log:
@@ -159,7 +144,7 @@ def read_logs():
             str_center("Вы ни разу не кинули кубик.")
         
 def main():
-    logs()
+    bet_play()
     str_center('Показать логи? (Enter)')
     if not input():
         read_logs()

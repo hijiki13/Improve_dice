@@ -1,0 +1,30 @@
+09/11/2022 22:20:20 - Event - Program starts
+09/11/2022 22:20:23 - Info - LOST with bet on 2 - Number: 3
+09/11/2022 22:20:25 - Info - LOST with bet on 6 - Number: 3
+09/11/2022 22:20:27 - Info - LOST with bet on 6 - Number: 4
+09/11/2022 22:20:31 - Info - LOST with bet on 6 - Number: 5
+09/11/2022 22:20:34 - Info - LOST with bet on 6 - Number: 2
+09/11/2022 22:20:36 - Info - LOST with bet on 6 - Number: 4
+09/11/2022 22:20:38 - Info - LOST with bet on 6 - Number: 4
+09/11/2022 22:20:40 - Info - LOST with bet on 4 - Number: 6
+09/11/2022 22:20:41 - Event - Program ended (User's choice)
+
+09/11/2022 22:20:52 - Event - Program starts
+09/11/2022 22:21:03 - Info - LOST with bet on 4 - Number: 5
+09/11/2022 22:21:05 - Info - LOST with bet on 1 - Number: 5
+09/11/2022 22:21:07 - Info - LOST with bet on 2 - Number: 5
+09/11/2022 22:21:09 - Info - LOST with bet on 3 - Number: 5
+09/11/2022 22:21:12 - Info - LOST with bet on 4 - Number: 2
+09/11/2022 22:21:14 - Info - LOST with bet on 5 - Number: 4
+09/11/2022 22:21:16 - Info - LOST with bet on 6 - Number: 3
+09/11/2022 22:21:19 - Info - LOST with bet on 4 - Number: 3
+09/11/2022 22:21:23 - Info - LOST with bet on 4 - Number: 5
+09/11/2022 22:21:25 - Info - LOST with bet on 1 - Number: 2
+09/11/2022 22:21:28 - Info - WIN with bet on 1 - Number: 1
+09/11/2022 22:21:30 - Error - KeyboardInterrupt
+09/11/2022 22:21:30 - Event - Program ends (Error)
+
+09/11/2022 22:21:47 - Event - Program starts
+09/11/2022 22:21:49 - Error - EOFError
+09/11/2022 22:21:49 - Event - Program ends (Error)
+
